@@ -1,0 +1,46 @@
+body{
+    background-color: #000000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    /* center body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding: 0;
+
+}
+
+
+.form{
+    /* styles for the form, border, letter backgorund, when its sended an green background efect */
+    display: flex;
+    margin-left: auto;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: 0px solid #ffffff;
+    box-sizing: border-box;
+    padding: 0px;
+    overflow: hidden;
+
+
+}
+
+.input {
+    width: 100%;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.sent {
+    background-color: green;
+    transition: background-color 0.5s ease;
+  }
+  
+  .white {
+    background-color: white;
+    transition: background-color 0.5s ease;
+  }
+  
