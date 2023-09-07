@@ -1,19 +1,29 @@
 import "./ToDoList.css";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import TaskForm from "./TaskForm";
 import Header from "../components/Header";
 
 //functional component for the To Do List Container
 function ToDoListContainer(){
-    //state for the tasks
-    const [task, setTask] = useState([]);
 
-    //add task function
-    const addTask = text => {
-    const newTask = { text, completed: false };
-    setTask([...task, newTask]);
-}
+    //inicializar el estado de task 
+    function initTasks() {
+        const savedTasks = localStorage.getItem("tasks");
+        if (savedTasks) {
+          return JSON.parse(savedTasks);
+        } else {
+          return [];
+        }
+      }
 
+    //callt the initTasks function
+    const [tasks, setTasks] = useState(initTasks());
+
+    //useas effect to save the tasks
+    useEffect(() => {
+        //convert in a JSON string
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        }, [tasks]);
 
     //delete Task, with index arg. 
     function deleteTask(index){
