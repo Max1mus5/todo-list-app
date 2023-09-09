@@ -120,3 +120,44 @@ button{
   color: green;
 }
   
+/* make responsive with mkey media */
+@media (max-width: 768px) {
+  /* disminuye el tamaña de todos los elementos en un 45% */
+  .form {
+    width: 45%;
+  }
+  .input {
+    padding: 3px;
+  }
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 18
+  }
+  .mark-completed-all{
+    font-size: 0.8rem;
+  }
+  .delete-all{
+    font-size: 0.8rem;
+  }
+  .task-item {
+    padding: 5px;
+  }
+  .icon {
+    font-size: 1rem;
+    margin-right: 5px;
+    width: 16px;
+  }
+  .task-text {
+    font-size: 0.8rem;
+  }
+  
+  h1{
+    font-size: 1rem;
+  }
+
+}
+
+
