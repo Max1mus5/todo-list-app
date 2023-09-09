@@ -1,79 +1,106 @@
 import "./ToDoList.css";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import TaskForm from "./TaskForm";
 import Header from "../components/Header";
 
-//functional component for the To Do List Container
-function ToDoListContainer(){
+// Functional component for the To Do List Container
+function ToDoListContainer() {
+  // Initialize the state of tasks
+  function initTasks() {
+    const savedTasks = localStorage.getItem("tasks");
 
-    //inicializar el estado de task 
-    function initTasks() {
-        const savedTasks = localStorage.getItem("tasks");
-        if (savedTasks) {
-          return JSON.parse(savedTasks);
-        } else {
-          return [];
-        }
-      }
+    if (savedTasks) {
+      return JSON.parse(savedTasks);
+    } else {
+      return [];
+    }
+  }
 
-    //callt the initTasks function
-    const [tasks, setTasks] = useState(initTasks());
+  // Call the initTasks function
+  const [tasks, setTasks] = useState(initTasks());
 
-    //useas effect to save the tasks
-    useEffect(() => {
-        //convert in a JSON string
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-        }, [tasks]);
+  // Use effect to save the tasks
+  useEffect(() => {
+    // Convert to a JSON string
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
-    //delete Task, with index arg. 
-    function deleteTask(index){
-    const newList = [...task];
+  // Function to add a task
+  function addTask(text) {
+    const newTask = { text, completed: false };
+    setTasks([...tasks, newTask]);
+  }
+
+  // Delete Task, with index arg.
+  function deleteTask(index) {
+    const newList = [...tasks];
     newList.splice(index, 1);
-    setTask(newList);}
-        
-    //mark as complete
-    function markComplete(index) {
-        const updatedTasks = [...task];
-        updatedTasks[index].completed = !updatedTasks[index].completed; // Cambia el estado de completado (true/false)
-        setTask(updatedTasks);
-      }
-      
+    setTasks(newList);
+  }
 
+  // Mark as complete
+  function markComplete(index) {
+    const updatedTasks = [...tasks];
+    updatedTasks[index].completed = !updatedTasks[index].completed; // Change the completed state (true/false)
+    setTasks(updatedTasks);
+  }
 
-    
-    //return the container
-    return(
-        <div className="ToDoContainer"> 
-            {/* To do list */}
-            <Header title="To Do List"  className="Header"/>   
-            <TaskForm addTask={addTask} />
-            {/* Task list */}
-            <ul className="ToDoElementsList">
-                {/* Map through the tasks */}
-                {task.map((task, index) => (
-                <li key={index}>
-                    {task.text}
-                    <button onClick={() => deleteTask(index)}>Delete</button>
-                    {/* //square to mark as complete */}
-                    <button onClick={() => markComplete(index)}>
-                        {task.completed ? "Incomplete" : "Complete"}
-                    </button>
-                </li>
-                 ))}
+  // Mark all as completed
+  const markAllCompleted = () => {
+    const updatedTasks = tasks.map((task) => {
+      return { ...task, completed: true };
+    });
+    setTasks(updatedTasks);
+  };
 
-                
-            </ul>
+  // Return the container
+  return (
+    <div className="ToDoContainer">
+      {/* To do list */}
+      <Header title="To Do List" className="Header" />
+      <TaskForm addTask={addTask} />
+      {/* Button to mark all tasks as completed */}
+      <button onClick={markAllCompleted}>
+        <span class="material-symbols-outlined mark-completed-all">
+          check_circle
+        </span>{" "}
+        <p className="mark-completed-all">Mark All</p>
+      </button>
+      {/* Button to delete all the tasks */}
+      <button onClick={() => setTasks([])}>
+        <span class="material-symbols-outlined delete-all">
+          delete_forever
+        </span>{" "}
+        <p className="delete-all">Delete All</p>
+      </button>
+      {/* Task list */}
+      <ul className="ToDoElementsList">
+        {/* Map through the tasks */}
+        {tasks.map((task, index) => (
+          <li key={index} className="task-item">
+            <span className="task-text">{task.text}</span>
+            <button onClick={() => deleteTask(index)}>
+              <span className="material-symbols-outlined icon delete-icon">
+                delete
+              </span>
+            </button>
+            <button onClick={() => markComplete(index)}>
+              {task.completed ? (
+                <span className="material-symbols-outlined icon completed-icon">
+                  done_all
+                </span>
+              ) : (
+                <span className="material-symbols-outlined icon backspace-icon">
+                  backspace
+                </span>
+              )}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
-           
-
-        </div>
-    );
-                }
-
-
-
-
-
-
-//export the container
+// Export the container
 export default ToDoListContainer;

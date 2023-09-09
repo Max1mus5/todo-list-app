@@ -1,34 +1,26 @@
 import React, { useState } from 'react';
 
-//formulario para escribir y añadir tareas
-
+// Formulario para escribir y añadir tareas
 const TaskForm = ({ addTask }) => {
-    const [value, setValue] = useState('');
+  const [value, setValue] = useState('');
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addTask(value);
+    setValue('');
+  }
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        if (!value) return;
-        addTask(value);
-        setValue('');
-        setSent(true);
-      }
-      
-      
-      
-
-    return (
-        <form onSubmit={handleSubmit} className='form'>
-            <input
-            type="text"
-            className={`input`}
-            value={value}
-            onChange={e => setValue(e.target.value)}
-            />
-
-        </form>
-        
-    );
+  return (
+    <form onSubmit={handleSubmit} className='form form-container'>
+      <input
+        type="text"
+        className={`input`}
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
+    </form>
+  );
 }
 
 export default TaskForm;

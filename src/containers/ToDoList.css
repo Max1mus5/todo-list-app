@@ -13,34 +13,110 @@ body{
 }
 
 
-.form{
-    /* styles for the form, border, letter backgorund, when its sended an green background efect */
-    display: flex;
-    margin-left: auto;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 20px;
-    border: 0px solid #ffffff;
-    box-sizing: border-box;
-    padding: 0px;
-    overflow: hidden;
+.form-container {
+  position: sticky;
+  top: 0;
 
+  z-index: 100;
+}
 
+.form {
+  /* styles for the form, border, letter background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 250px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 0;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden;
 }
 
 .input {
-    width: 100%;
-    border-radius: 20px;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 20px;
+  padding: 5px;
+  word-wrap: break-word;
+}
+
+.material-symbols-outlined {
+  color: rgb(0, 153, 255);
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+.mark-completed-all{
+  display: inline-flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 1rem;
+  color: #ffffff;
+  margin-right: 0px;
+}
+
+.delete-all{
+  display: inline-flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 1rem;
+  color: #ff0000;
+  margin-right: 0px;
 }
 
 .sent {
-    background-color: green;
-    transition: background-color 0.5s ease;
+  background-color: green;
+  transition: background-color 0.5s ease;
+}
+
+.white {
+  background-color: white;
+  transition: background-color 0.5s ease;
+}
+
+button{
+  /* show the icon left to the task text */
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-right: 10px;
   }
-  
-  .white {
-    background-color: white;
-    transition: background-color 0.5s ease;
-  }
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Ajusta el espacio entre los elementos */
+}
+
+.task-text {
+  flex-grow: 1; /* El texto ocupará todo el espacio disponible */
+  white-space: pre-wrap;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-right: 10px; /* Ajusta la distancia entre el icono y el texto */
+  width: 24px; /* Ancho fijo para los iconos */
+  display: inline-flex; /* Asegura que los iconos no afecten el flujo del texto */
+}
+
+.completed-icon {
+  color: green;
+}
   
