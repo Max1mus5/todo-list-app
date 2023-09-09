@@ -120,9 +120,8 @@ button{
   color: green;
 }
   
-/* make responsive with mkey media */
+/* make responsive with  media */
 @media (max-width: 768px) {
-  /* disminuye el tamaña de todos los elementos en un 45% */
   .form {
     width: 45%;
   }
